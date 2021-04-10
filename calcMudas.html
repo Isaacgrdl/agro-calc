@@ -25,22 +25,44 @@
             </div>
         </div>
         <div class="calculadora bg-custom pb-5">
-            <div class="input-group flex-nowrap">
-                <div class="input-group mb-3 mr-2">
-                    <input type="text" class="form-control" placeholder="Largura (m)" ng-model="data.largura">
+            <div class="input-group container">
+                <div class="p-3 mb-2 bg-danger text-white w-100" ng-show="message">{{ message }}</div>
+                <div class="row row-cols-2">
+                    <div class="input-group mb-3 col">
+                        <input type="text" class="form-control" placeholder="Largura (m)" ng-model="data.largura">
+                    </div>
+                    <div class="input-group mb-3 col">
+                        <input type="text" class="form-control" placeholder="Comprimento (m)" ng-model="data.comprimento">
+                    </div>
+                    <div class="input-group mb-3 col">
+                        <input type="text" class="form-control" placeholder="Espaçamento entre colunas (m)" ng-model="data.espacColunas">
+                    </div>
+                    <div class="input-group mb-3 col">
+                        <input type="text" class="form-control" placeholder="Espaçamento entre linhas (m)" ng-model="data.espacLinhas">
+                    </div>
+                    <div class="input-group mb-3 col">
+                        <input type="text" class="form-control" placeholder="Número de Canteiros" ng-model="data.nroCanteiros">
+                    </div>
                 </div>
-                <div class="input-group mb-3 mr-2">
-                    <input type="text" class="form-control" placeholder="Comprimento (m)" ng-model="data.comprimento">
-                </div>
-                <div class="input-group mb-3 mr-2">
-                    <input type="text" class="form-control" placeholder="Espaçamento entre colunas (m)" ng-model="data.espacColunas">
-                </div>
-                <div class="input-group mb-3 mr-2">
-                    <input type="text" class="form-control" placeholder="Espaçamento entre linhas (m)" ng-model="data.espacLinhas">
-                </div>
+                <table class="table text-white" ng-show="totalMudas">
+                    <thead>
+                      <tr>
+                        <th scope="col">Total de Mudas em 1 canteiro  <i class="fas fa-seedling"></i></th>
+                        <th scope="col">Total de Mudas  <i class="fas fa-seedling"></i></th>
+                        <th scope="col">Total de Mudas + Percentual de Perda  <i class="fas fa-seedling"></i></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="text-center">{{ totalMudas }}</td>
+                        <td class="text-center">{{ totalMudasPorCanteiro }}</td>
+                        <td class="text-center">{{ totalMudasPerda }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <button type="submit" class="btn btn-primary w-100" ng-click="calcularMudas(data)">Calcular</button>
+                  <button type="submit" class="btn btn-danger w-100 mt-2" ng-click="limpar()">Limpar</button>
             </div>
-            <button type="submit" class="btn btn-primary" ng-click="calcularMudas(data)">Calcular</button>
-            <span ng-show="totalMudas">Total de Mudas: {{ totalMudas }}  <i class="fas fa-seedling"></i></span>
         </div>
     </div>
     <script src="js/app.js"></script>
